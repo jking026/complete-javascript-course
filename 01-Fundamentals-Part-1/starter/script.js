@@ -201,13 +201,15 @@ lines');
 console.log(`String with
 multiple
 lines`);
-*/
+
 
 //LESSON: TAKING DECISIONS: IF / ELSE STATEMENTS //
 
 const age = 15;
 
-//*if- else control structor*//
+
+//if- else control structor//
+
 if (age >= 18) {
   console.log('Sarah can start driving license 🚘')
 } else {
@@ -224,4 +226,155 @@ if (birthYear <= 2000) {
   century = 21;
 }
 
+
 console.log(century);
+
+
+/////////////////////////////////Coding Challenge #2/////////////////////////////////////////
+// Use the BMI example from Challenge #1, and the code you already wrote, and
+// improve it.
+// Your tasks:
+
+// 1. Print a nice output to the console, saying who has the higher BMI. The message
+// is either "Mark's BMI is higher than John's!" or "John's BMI is higher than Mark's!"
+
+// 2. Use a template literal to include the BMI values in the outputs. Example: "Mark's
+// BMI (28.3) is higher than John's (23.9)!"
+
+//TEST DATA 1//
+// const massMark = 95;
+// const heightMark = 1.88;
+// const BMIMark = massMark / heightMark ** 2;
+// console.log(BMIMark.toFixed(2))
+
+// const massJohn = 85;
+// const heightJohn = 1.76;
+// const BMIJohn = massJohn / heightJohn ** 2;
+// console.log(BMIJohn.toFixed(2))
+
+//TEST DATA 2//
+const massMark = 95;
+const heightMark = 1.88;
+const BMIMark = massMark / heightMark ** 2;
+console.log(BMIMark.toFixed(2))
+
+const massJohn = 85;
+const heightJohn = 1.76;
+const BMIJohn = massJohn / heightJohn ** 2;
+console.log(massJohn / (heightJohn * heightJohn).toFixed(2))
+if (BMIMark > BMIJohn) {
+  console.log(`Mark's BMI (${BMIMark.toFixed(2)}) is higher than John's BMI (${BMIJohn.toFixed(2)})!`)
+} else {
+  console.log(`John's BMI (${BMIJohn.toFixed(2)}) is higher than Mark's BMI (${BMIMark.toFixed(2)})!`)
+};
+
+////////////////////////////CODING CHALLENGE # 2-COMPLETE////////////////////////////////////
+
+
+
+//LESSON: TYPE CONVERSION AND COERCION//
+
+//conversion = when we manually convert from one type to another//
+//coercion = when JS converts behind the scenes automatically//
+
+//type convserion//
+const inputYear = '1991';
+console.log(Number(inputYear), inputYear)//converts strings to numbers//
+console.log(Number(inputYear) + 18);//will concatonate to the string (199118)//
+
+console.log(Number('Jonas'))//returns NaN-opperations that produce a non number//
+console.log(typeof NaN);
+
+console.log(String(23), 23);//Returns string 23 in white color//
+
+//type coercion//
+console.log('I am ' + 23 + ' years old')//outputs the same '+' causes coercion//
+console.log('I am ' + '23' + ' years old')
+console.log('23' - '10' - 3); //returns 10( "-" triggers opposite conversion//
+console.log('23' + '10' + 3)//"+" concatonates the numbers together;
+console.log('23' * '2')
+console.log('23' > '18')//returns a boolean-true//
+
+let n = '1' + 1; // concatonates to return '11'//
+n = n - 1; //coverts '11' to a number and subracts 1//
+console.log(n) //returns 10//
+
+
+//LESSON: TRUTHY AND FALSY VALUES//
+
+// 5 falsy values: 0, '', undefined, null, NaN
+console.log(Boolean(0));
+console.log(Boolean(undefined));
+console.log(Boolean('Jonas'));
+console.log(Boolean({})); //truthy
+
+const money = 0;
+if (money) {
+  console.log("Don't spend it all 💵🤑")
+} else {
+  console.log("You should get a job!")
+}
+
+let height = 0;
+if (height) {
+  console.log('YAY! Height is defined')
+} else {
+  console.log('Height is UNDEFINED')
+}
+
+
+//LESSON: EQUALITY OPERATORS- == VS. ===//
+
+const age = '18';
+
+if (age === 18) console.log("You just became an adult 🎆(strict)");
+//use strict equality as default//
+if (age == 18) console.log("You just became an adult 🎆(loose)");//avoid loose equality as much as you can in order to avoid bugs//
+
+const favorite = Number(prompt("What's your favorite number?"));
+console.log(favorite);
+console.log(typeof favorite)
+
+if (favorite === 23) {
+  console.log("Cool! 23 is an amazing number ! 😛")
+} else if (favorite === 7) {
+  console.log('7 is also a cool number')
+} else if (favorite === 9) {
+  console.log("9 is also a cool number")
+} else {
+  console.log('Number is not 23 or 7 or 9')
+}
+
+if (favorite !== 23) console.log('Why not 23?');
+
+*/
+
+//LESSON: LOGICICAL OPERATORS//
+
+// const hasDriversLicense = true; // A
+// const hasGoodVision = true; // B
+
+// console.log(hasDriversLicense && hasGoodVision);
+// console.log(hasDriversLicense || hasGoodVision);
+// console.log(!hasDriversLicense);
+
+// const shouldDrive = hasDriversLicense && hasGoodVision;
+
+// // if (shouldDrive) {
+// //   console.log("Sarah is able to drive!")
+// // } else {
+// //   console.log('Someone else should drive...😫')
+// // }
+
+// const isTired = false; // C
+// console.log(hasDriversLicense && hasGoodVision && isTired);
+
+
+// if (hasDriversLicense && hasGoodVision && !isTired) {
+//   console.log("Sarah is able to drive!")
+// } else {
+//   console.log('Someone else should drive...😫')
+// }
+
+console.log(century);
+
