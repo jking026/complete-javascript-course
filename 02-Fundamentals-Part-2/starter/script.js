@@ -111,7 +111,36 @@ const yearsUntilRetirement = function (birthYear, firstName) {
 console.log(yearsUntilRetirement(1991, 'Jonas'));
 console.log(yearsUntilRetirement(1950, 'Mike'));
 
-*/
 
-///////////////////////CODING CHALLENGE #1///////////////////////////
+
+///////////////////////SECTION 2: CODING CHALLENGE #1///////////////////////////
+
+//returns the average score for each game//
+const calcAverage = (scoreOne, scoreTwo, scoreThree) => {
+  return (scoreOne + scoreTwo + scoreThree) / 3;
+};
+// Test Data #1
+let scoreDolphins = calcAverage(44, 23, 71);
+let scoreKoalas = calcAverage(65, 54, 49);
+
+function checkWinner(avgDolphins, avgKoalas) {
+
+  if (avgDolphins >= (avgKoalas * 2)) {
+    console.log(`Dolphins are the champions! (${avgDolphins} vs.${avgKoalas})`);
+    return avgDolphins;
+  } else if (avgKoalas >= (avgDolphins * 2)) {
+    console.log(`Koalas are the champions! (${avgKoalas} vs.${avgDolphins})`);
+    return avgKoalas;
+  } else {
+    console.log("No team wins! 🤬")
+  }
+}
+
+checkWinner(scoreDolphins, scoreKoalas) //returns "No team wins"
+// //Test Data #2
+scoreDolphins = calcAverage(85, 54, 41); //redefines the variable to Test Data #2//
+scoreKoalas = calcAverage(23, 34, 27);
+checkWinner(scoreDolphins, scoreKoalas) //returns "Dolphins are the champions! (60 vs.28)"
+
+*/
 
