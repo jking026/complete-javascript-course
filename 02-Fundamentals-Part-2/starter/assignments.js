@@ -115,4 +115,37 @@ const percentages = [
 
 console.log(percentages, length)
 
+
+//LESSON: Basic Array Operations (Methods)//
+
+//creates an array with neighboring countries tothe USA//
+const usaNeighbors = ['Mexico', 'Canada'];
+usaNeighbors.push('Utopia');
+console.log(usaNeighbors);
+
+usaNeighbors.pop();
+console.log(usaNeighbors);
+
+if (!usaNeighbors.includes("Germany")) {
+  console.log('Probably not a central European country :D');
+};
+
+usaNeighbors[usaNeighbors.indexOf('Mexico')] = 'United Mexican States';
+console.log(usaNeighbors);
+\
+
+//LESSON: INTRODUCTION TO OBJECTS//
+
+const myCountry = {
+  country: "The United States of American",
+  capital: "Washington D.C.",
+  language: "English",
+  population: 328.2,
+  neighbors: ['Mexico', 'Canada']
+};
+
+console.log(myCountry);
 */
+
+
+//LESSON: DOT vs. BRACKET NOTATION
