@@ -313,7 +313,127 @@ jonas['twitter'] = "@jonasschmedtman";
 
 console.log(`${jonas.firstName} has ${jonas["friends"].length} friends, and his best friend is named ${jonas.friends[0]}.`);
 
-*/
+
 
 //LESSON: OBJECT METHODS//
+
+// const jonas = {
+//   firstName: 'Jonas',
+//   lastName: 'Schmedtmann',
+//   birthYear: 1991,
+//   job: 'teacher',
+//   friends: ['Michael', 'Peter', 'Steven'],
+//   hasDriversLicense: true,
+
+//   //*any function attached to an object is called: "METHOD"//
+//   // calcAge: function (birthYear) {
+//   //   return 2037 - birthYear;
+//   // }
+
+//   // calcAge: function () {
+//   //   console.log(this)
+//   //   return 2037 - this.birthYear;
+//   // }
+
+//   calcAge: function () {
+//     this.age = 2037 - this.birthYear;
+//     return this.age;
+//   }
+// };
+// console.log(jonas.calcAge());
+// console.log(jonas.age);
+
+//Challenge//
+//"Jonas is a 46-year old teacher, and has a/no driver's license"
+
+
+const james = {
+  firstName: 'James',
+  lastName: 'King',
+  birthYear: 1990,
+  job: 'programmer',
+  friends: ['Joshua', 'Jessica', 'Max'],
+  hasDriversLicense: true,
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${james.job}, and he has ${this.hasDriversLicense ? 'a' : 'no'} driver's license.`
+  }
+  //no need to make a function, just make use ternary operator ___ ? 'a' : 'no'
+
+  // hasDriversLicense: function () {
+  //   if (james.hasDriversLicense = true) {
+  //     console.log('a ')
+  //     return 'a';
+  //   } else (james.hasDriversLicense = false)
+  //   console.log("no ")
+  //   return 'no ';
+  // }
+
+};
+// console.log(`${james.firstName} is a ${james.calcAge()} old ${james.job}, and he has ${james.hasDriversLicense()} driver's license!`)
+
+console.log(james.getSummary());
+
+
+///////////////////////SECTION 2: CODING CHALLENGE #3///////////////////////////
+
+const mark = {
+  firstName: "Mark",
+  lastName: "Miller",
+  mass: 78,
+  height: 1.69,
+
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2; //using this.__ is much easier and can be reusabale
+    return this.bmi;
+  }
+};
+
+const john = {
+  firstName: "John",
+  lastName: "Smith",
+  mass: 92,
+  height: 1.95,
+
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  }
+};
+
+console.log(mark.calcBMI())//higher-27.30996
+console.log(john.calcBMI())//lower-24.194608
+
+console.log(`${mark["firstName"] + " " + mark.lastName}'s BMI (${mark.calcBMI().toFixed(2)}🐽🐽🐽🐽🐽) is higher than ${john["firstName"] + " " + john.lastName}'s BMI (${john.calcBMI().toFixed(2)})!`);
+
+
+///////////////////////Section-2 CC #3-COMPLETE////////////////////////////////
+
+
+//LESSON: ITERATION: THE for LOOP//
+
+//************VIOLATED DON'T REPEAT YOURSELF**********
+// console.log('Lifting weights repetition 1 🏋️‍♂️');
+// console.log('Lifting weights repetition 2 🏋️‍♂️');
+// console.log('Lifting weights repetition 3 🏋️‍♂️');
+// console.log('Lifting weights repetition 4 🏋️‍♂️');
+// console.log('Lifting weights repetition 5 🏋️‍♂️');
+// console.log('Lifting weights repetition 6 🏋️‍♂️');
+// console.log('Lifting weights repetition 7 🏋️‍♂️');
+// console.log('Lifting weights repetition 8 🏋️‍♂️');
+// console.log('Lifting weights repetition 9 🏋️‍♂️');
+// console.log('Lifting weights repetition 10 🏋️‍♂️');
+
+//instead use for loops
+// for loop keeps running while condition is TRUE//
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights  ${rep} 🏋️‍♂️`);
+};
+
+*/
 
