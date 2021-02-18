@@ -603,6 +603,9 @@ const game = {
     team2: 6.5,
   },
 };
+/*
+// CC #2 BEFORE HELP
+// 1.
 const goalsOrder = Object.keys(game.scored);
 const [...scored] = game.scored;
 
@@ -614,3 +617,99 @@ for (let i = 0; i < scored.length; i++) {
   Number(goalsOrder[i]++);
   console.log(`Goal ${Number(goalsOrder[i]++)}: ${playersGoal}`);
 }
+// 2.
+
+const { team1, x: draw, team2 } = game.odds;
+team1 < team2 && console.log(`Odd of victory ${game.team1}: ${team1}`);
+team1 > team2 && console.log(`Odd of victory ${game.team2}: ${team2}`);
+team1 === team2 && console.log(`Odd of draw: ${draw}`);
+
+// 3.
+
+const scorers = {};
+console.log(scorers);
+
+// for (let i = 0; i < scored.length; i++) {
+//   console.log(goalsOrder.entries('lewandoski'));
+// }
+
+for (const [key, value] of Object.entries(scored)) {
+  console.log(`${key}: ${value}`);
+  console.log();
+}
+*/
+/*
+// CC #2 After Help
+
+// 1
+for (const [i, player] of game.scored.entries())
+  console.log(`Goal ${i + 1}: ${player}`);
+
+// 2
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) average += odd;
+average /= odds.length;
+console.log(average);
+
+//3.
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr} ${odd}`);
+}
+
+// Bonus (I didn't attempt)
+const scorers = {};
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log(scorers);
+*/
+/*
+//LESSON: SETS
+//Sets need an iterable, and can hold mixed data types
+
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(ordersSet); //Set(3) {"Pasta", "Pizza", "Risotto"}
+console.log(new Set('Jonas'));
+console.log(ordersSet.size); //Same as .length
+console.log(ordersSet.has('Pizza')); //Same as.inlcudes method
+console.log(ordersSet.has('Bread'));
+
+//How to add to a set
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+
+//How to clear everything in a set?
+// ordersSet.clear();
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// How to use a spread operator in a set?
+const staffUnique = [...new Set(staff)]; // Works exactly like an array
+console.log(staffUnique);
+//How to check the size of a set?
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+
+console.log(new Set('JamesJeremiahKing').size);
+
+//How to retrieve values out of a set?
+//There is no reason to use a set, because the value is there or not in a set.
+
+*/
+
+//  LESSON: MAPS: FUNDAMENTALS//
