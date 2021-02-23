@@ -874,3 +874,242 @@ console.log(eventsBetter);
 ///////////////////CODING CHALLENGE #3 COMPLETE //////////////////////
 
 // LESSON: WORKING WITH STRINGS - PART #1//
+/*
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log(typeof plane[0]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+//Finding the location of 'string'
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+
+// .slice method returns a new "string"
+console.log(airline.slice(4)); // (substring) => "Air Portugal"
+console.log(airline.slice(4, 7)); // 7-4 = 3; => Air
+
+console.log(airline.slice(0, airline.indexOf(' '))); //to find the first string
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // to find the last string
+
+console.log(airline.slice(-2)); // extract from the end => al
+console.log(airline.slice(1, -1)); // => AP Air Portuga
+
+const checkMiddleSeat = function (seat) {
+  //B and E are middle seats
+  const s = seat.slice('-1');
+  if (s === 'B' || s === 'E') console.log('You got the middle seat 😒');
+  else console.log('You got lucky 👳🏾‍♂️👳🏾‍♀️');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('James')); //call a method on a 'string' converted into an object
+console.log(typeof new String('James').slice()); //converts an object back into a string
+*/
+
+// LESSON: WORKING WITH STRINGS-PART 2
+
+// const airline = 'TAP Air Portugal';
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+/*
+// video example
+// Fix capitalization in name
+const passenger = 'jOnAS'; //Jonas
+const passengerLower = passenger.toLowerCase();
+
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+  console.log(passengerCorrect);
+*/
+
+// //My function: converts first letter to uppercase and the rest lowercase
+// const passengerCorrectName = function (passenger) {
+//   const passengerLower = passenger.toLowerCase();
+//   const passCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+//   console.log(passCorrect);
+// };
+// // passengerCorrectName('jAmEs');
+// // passengerCorrectName('yEjIN');
+
+// // Comparing email
+// const email = 'hello@jonas.io';
+// const loginEmail = ' Hello@Jonas.io \n';
+
+// // const lowerEmail = loginEmail.toLowerCase();
+// //removes leading and trailing (whitespaces)
+// // const trimmedEmail = lowerEmail.trim();
+// //Video example
+// // const normalizedEmail = loginEmail.toLowerCase().trim();
+// // console.log(normalizedEmail);
+// // console.log(email === normalizedEmail);
+
+// //Compare email function-no help
+// const compareEmail = function (enteredEmail, checkedEmail) {
+//   const normalizedEmail = checkedEmail.toLowerCase().trim();
+//   console.log(enteredEmail === normalizedEmail ? true : false);
+// };
+// compareEmail('asjfalkdf@gajljg.com', 'asjfalkdf@gajljg.com');
+// compareEmail(email, loginEmail);
+
+// // replacing
+// const priceGB = '288,97£'; //alt- 0163 £
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceUS);
+
+// const announcement = 'All passengers to boarding door 23. Boarding door 23!';
+
+// console.log(announcement.replace('door', 'gate')); //Only replaceing the first occurence
+
+// console.log(announcement.replaceAll('door', 'gate')); //New function
+// //REGEX-regular expressions-case sensative
+// console.log(announcement.replace(/door/g, 'gate'));
+
+// // Booleans
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.includes('Air'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family');
+// }
+
+// // Practive exercise
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are NOT allowed on board');
+//   } else {
+//     console.log('Welcome aboard!');
+//   }
+// };
+// checkBaggage('I hava a laptop, some Food and a pocket knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got soe snacks and a gun for protection');
+
+// LESSON: WORKING WITH STRINGS - PART 3
+/*
+// Split and join  based on a divider
+console.log('a +very+nice+string'.split('+'));
+console.log('Jonas Schmedtmann'.split(' '));
+
+const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const passenger = 'jessica ann smith davis';
+const capitalizedName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    // namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(' '));
+};
+capitalizedName('jessica ann smith davis');
+capitalizedName('james king');
+
+// Padding a string: to add a number of characters to a string until a string has a certain number of content
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+console.log('Jonas'.padStart(20, '+').padEnd(30, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+console.log(maskCreditCard(4598715451));
+console.log(maskCreditCard(43374545454454544));
+console.log(maskCreditCard('5165165165165165165165165165'));
+
+//Repeat
+const message2 = 'Bad weather... All Departures Delayed... ';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+};
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+*/
+
+///////////CODING CHALLENGE #4///////////////
+/*
+Write a program that receives a list of variable names written in underscore_case
+and convert them to camelCase.
+The input will come from a textarea inserted into the DOM (see code below to
+insert the elements), and conversion will happen when the button is pressed
+*/
+/*
+Test data (pasted to textarea, including spaces):
+underscore_case
+first_name
+Some_Variable
+ calculate_AGE
+delayed_departure
+*/
+/*
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+//creates the function when the btn is clicked
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+  console.log(rows);
+//destructures rows and creates a key for checkmarks
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_'); // main code for converting to lowerCase
+    //accesses the [0] after (_) and converts it to camelCase
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+  }
+});
+
+document.querySelector('textarea').style.backgroundColor = 'yellow';
+document.querySelector('button').style.backgroundColor = 'blue';
+*/
+///////////CODING CHALLENGE #4-complete ///////////////
+/*
+//LESSON: STRING METHODS PRACTICE
+
+// Data needed for a later exercise
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+//can seperate at any specified point
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+
+  // console.log(type);//checked the beginning of 'Delayed'
+  const output = `${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
+    '_',
+    ' '
+  )} from ${getCode(from)} to ${getCode(to)} (${time.replace(
+    ':',
+    'h'
+  )})`.padStart(48);
+  console.log(output);
+}
+
+*/
