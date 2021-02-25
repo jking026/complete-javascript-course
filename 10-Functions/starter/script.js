@@ -383,3 +383,13 @@ boardPassengers(180, 3);
 //   console.log(' 🖖🖖🖖🖖🖖🖖🖖🖖🖖');
 // }, 3000);
 */
+
+////// CODING CHALLENGE #2--IIFE
+// NOtes: when using a IIFE the color will not change after popping off the stack until it notices a change(save)
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
