@@ -74,3 +74,46 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+/*
+//Arrays are objects and have specific tools
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// SLICE
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4));
+console.log(arr.slice(-2)); // => 'd' , 'e'
+console.log(arr.slice(-1));
+console.log(arr.slice(1, -2));
+// return a shallow copy of an array
+console.log(arr.slice());
+console.log([...arr]);
+
+// SPLICE
+// Slice MUTATE an array
+// console.log(arr.splice(2));
+arr.splice(-1);
+console.log(arr); //=> ['a', 'b']
+
+// REVERSE
+// reverse does MUTATE the original array
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse());
+console.log(arr2);
+
+// CONCAT
+//Combines two arrays
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]);
+
+// JOIN
+// combines an array with any symbol
+console.log(letters.join(' - '));
+console.log(letters.join(' + '));
+console.log(letters.join(' ? '));
+console.log(letters.join(' 🍸☺ '));
+*/
+
+// LESSON: LOOPING ARRAYS: FOREACH
