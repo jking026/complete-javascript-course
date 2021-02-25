@@ -71,6 +71,85 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+/*
+//Arrays are objects and have specific tools
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// SLICE
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4));
+console.log(arr.slice(-2)); // => 'd' , 'e'
+console.log(arr.slice(-1));
+console.log(arr.slice(1, -2));
+// return a shallow copy of an array
+console.log(arr.slice());
+console.log([...arr]);
+
+// SPLICE
+// Slice MUTATE an array
+// console.log(arr.splice(2));
+arr.splice(-1);
+console.log(arr); //=> ['a', 'b']
+
+// REVERSE
+// reverse does MUTATE the original array
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse());
+console.log(arr2);
+
+// CONCAT
+//Combines two arrays
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]);
+
+// JOIN
+// combines an array with any symbol
+console.log(letters.join(' - '));
+console.log(letters.join(' + '));
+console.log(letters.join(' ? '));
+console.log(letters.join(' 🍸☺ '));
+*/
+/*
+// LESSON: LOOPING ARRAYS: FOREACH
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// forEach function is a HIGHER ORDER FUCTION (we don't call this function)
+
+// for(const movement of movements)
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${movement}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+  }
+}
+console.log('-----------FOREACH-----------------');
+// ****important*** Order of parameters matter
+// 1st. Current element
+// 2nd. Current index
+// 3rd. Entire array we are looping over
+movements.forEach(function (mov, i, arr) {
+  if (mov > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+});
+
+// 0: function(200)
+// 1: function(450)
+// 2. function(400)
+// ...
+
+// When to use for each/ for of
+//Cannot breakout of a for each loop, because it will loop forever
+*/
+
+// LESSON: forEACH WITH MAPS AND SETS

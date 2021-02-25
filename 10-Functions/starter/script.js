@@ -229,3 +229,168 @@ const addVAT2 = addTaxRate(0.23);
 console.log(addVAT2(100));
 console.log(addVAT2(23));
 */
+/*
+////////////////////CODING CHALLENGE #1 S10////////////////////////
+
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+  // This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+  //this is called a METHOD not a function
+  registerNewAnswer() {
+    // Get the answer
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+      )
+    );
+    console.log(answer);
+
+    // Register answer
+    typeof answer === 'number' &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+
+    this.displayResults();
+    this.displayResults('string');
+  },
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      console.log(`"Poll results are ${this.answers.join(', ')}`);
+    }
+  },
+};
+
+
+// 1.
+Create a method called 'registerNewAnswer' on the 'poll' object.
+ a) Display a prompt window for the user to input the number of the
+selected option.
+
+
+// 2. Call his method whenevSer the user clicks the answer poll
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+//displayResult => type string .toLowerCase()
+
+poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+/*Test data for bonus:
+§ Data 1: [5, 2, 3]
+§ Data 2: [1, 5, 3, 9, 6, 1]
+*/
+
+///Redo necessary----CC#1--- finished with help accept for button function
+
+/*
+// LESSON: IMMEDIATELY INVOKED FUNCTION EXPRESSIONS (IIFE)//
+
+const runOnce = function () {
+  console.log('This will never run again');
+  const isPrivate = 23;
+};
+runOnce();
+
+// console.log(isPrivate);
+//IIFE
+(function () {
+  console.log('This will never run again');
+})();
+// Arrow IIFE
+(() => console.log('This will never run again'))();
+// Why was this invented?
+
+//Data defined inside a scope is 'INCAPSULATED'/private'
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+console.log(notPrivate);
+*/
+/*
+/// LESSON: CLOSURES/////
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+*/
+/*
+// LESSON: MORE CLOSURE EXAMPLES//
+
+// Don't need to return a function from another function to use closures
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+// Re-assigning f  function
+h();
+f();
+console.dir(f);
+
+// Example 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+// closures take priority in the scope chain
+const perGroup = 1000;
+boardPassengers(180, 3);
+
+// setTimeout function executes the function in miliseconds
+// setTimeout(function () {
+//   console.log(' 🖖🖖🖖🖖🖖🖖🖖🖖🖖');
+// }, 3000);
+*/
+/*
+////// CODING CHALLENGE #2--IIFE
+// NOtes: when using a IIFE the color will not change after popping off the stack until it notices a change(save)
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+*/
