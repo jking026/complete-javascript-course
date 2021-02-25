@@ -166,3 +166,5 @@ currenciesUnique.forEach(function (value, _, map) {
   console.log(`${_}: ${value}`);
 });
 */
+
+//LESSON: PROJECT----BANKIST APP
