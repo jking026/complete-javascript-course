@@ -286,3 +286,30 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 */
 
 ///Redo necessary----CC#1--- finished with help accept for button function
+
+/*
+// LESSON: IMMEDIATELY INVOKED FUNCTION EXPRESSIONS (IIFE)//
+
+const runOnce = function () {
+  console.log('This will never run again');
+  const isPrivate = 23;
+};
+runOnce();
+
+// console.log(isPrivate);
+//IIFE
+(function () {
+  console.log('This will never run again');
+})();
+// Arrow IIFE
+(() => console.log('This will never run again'))();
+// Why was this invented?
+
+//Data defined inside a scope is 'INCAPSULATED'/private'
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+console.log(notPrivate);
+*/
