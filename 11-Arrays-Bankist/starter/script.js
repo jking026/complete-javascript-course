@@ -60,7 +60,34 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+/*
+// LESSON: CREATING DOM ELEMENTS
 
+const displayMovements = function (movements) {
+  //similar to 'texcontent'
+  containerMovements.innerHTML = '';
+  // .textConten = 0;
+
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const html = `
+       <div class="movements__row">
+        <div class="movements__type movements__type--${type}">${
+      i + 1
+    }${type}</div>
+ 
+        <div class="movements__value">${mov}</div>
+      </div>
+    `;
+    //Appended to the other child elements
+    // containerMovements.insertAdjacentHTML('beforeend', html);
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+// console.log(containerMovements.innerHTML);
+*/
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -168,3 +195,61 @@ currenciesUnique.forEach(function (value, _, map) {
 */
 
 //LESSON: PROJECT----BANKIST APP
+//JUST NOTES AND OVERVIEW
+
+//////////CODING CHALLENGE #1///////////////////
+/*
+// Data 1
+const juliasData = [3, 5, 2, 12, 7];
+const katesData = [4, 1, 15, 8, 3];
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const juliasData2 = dogsJulia.splice(1, 2);
+  console.log(juliasData2);
+  // const dogs = juliasData2.concat(dogsKate);
+  // console.log(dogs);
+
+  for (let i = 0; i < juliasData2.length; i++) {
+    console.log(`"------Julia's Dogs #${i + 1}-------"`);
+    if (juliasData2[i] >= 3) {
+      console.log(
+        `Dog number ${i + 1} is an adult, and is ${juliasData2[i]} years old`
+      );
+    } else {
+      console.log(`Dog number ${i + 1} is still a puppy🐶`);
+    }
+    for (let j = 0; j < dogsKate.length; j++) {
+      console.log(`"------Kate's Dogs #${j + 1}-------"`);
+      if (dogsKate[j] >= 3) {
+        console.log(
+          `Dog number ${j + 1} is an adult, and is ${dogsKate[j]} years old`
+        );
+      } else {
+        console.log(`Dog number ${j + 1} is still a puppy🐶`);
+      }
+    }
+  }
+};
+checkDogs(juliasData, katesData);
+///for each checkDogs
+*/
+/*
+///After help
+const checkDogs = function (dogsJulia, dogsKate) {
+  const dogsJuliasCorrected = dogsJulia.slice();
+  dogsJuliasCorrected.splice(0, 1);
+  dogsJuliasCorrected.splice(-2);
+  const dogs = dogsJuliasCorrected.concat(dogsKate);
+  console.log(dogs);
+
+  dogs.forEach(function (dog, i) {
+    if (dog >= 3) {
+      console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`);
+    } else {
+      console.log(`Dog number ${i + 1} is still a puppy 🐶`);
+    }
+  });
+};
+
+checkDogs(juliasData, katesData);
+*/
