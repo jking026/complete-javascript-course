@@ -92,7 +92,7 @@ displayMovements(account1.movements);
 /////////////////////////////////////////////////
 // LECTURES
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 /*
@@ -252,4 +252,33 @@ const checkDogs = function (dogsJulia, dogsKate) {
 };
 
 checkDogs(juliasData, katesData);
+*/
+/*
+//LESSON: MAP METHOD
+//Map method gives a brand new array bby applying a callback function
+
+const eurToUsd = 1.1;
+
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+
+console.log(movements);
+console.log(movementsUSD);
+
+const movementsUSDFor = [];
+for (const mov of movements) movementsUSDFor.push(mov * eurToUsd);
+console.log(movementsUSDFor);
+
+// returns movements action to the Movements section
+const movementsDescriptions = movements.map(
+  (mov, i, arr) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+
+console.log(movementsDescriptions);
 */
