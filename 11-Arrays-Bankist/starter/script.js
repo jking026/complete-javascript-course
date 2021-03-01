@@ -60,7 +60,7 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
-/*
+
 // LESSON: CREATING DOM ELEMENTS
 
 const displayMovements = function (movements) {
@@ -86,12 +86,44 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
-// console.log(containerMovements.innerHTML);
-*/
+// LESSON: COMPUTING NAMES
+//creates a new object property inside accounts
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+console.log(createUsernames(accounts));
+console.log(accounts);
+
+const user = 'Steven Thomas Williams'; //stw
+//toLowerCase, split, map, and join method to get initials
+// const username = user
+//   .toLowerCase()
+//   .split(' ')
+//   .map(function (name) {
+//     return name[0];
+//   })
+//   .join('');
+
+//arrow method to return initials
+// const username = user
+//   .toLowerCase()
+//   .split(' ')
+//   .map(name => name[0])
+//   .join('');
+// console.log(username);
+
+//END OF LESSON: COMPUTING NAMES
+/*
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
+*/
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
