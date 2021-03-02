@@ -86,6 +86,13 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+//creates and displays balance
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, curr) => acc + curr, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcDisplayBalance(account1.movements);
+
 // LESSON: COMPUTING NAMES
 //creates a new object property inside accounts
 const createUsernames = function (accs) {
@@ -97,10 +104,7 @@ const createUsernames = function (accs) {
       .join('');
   });
 };
-console.log(createUsernames(accounts));
-console.log(accounts);
 
-const user = 'Steven Thomas Williams'; //stw
 //toLowerCase, split, map, and join method to get initials
 // const username = user
 //   .toLowerCase()
@@ -314,3 +318,103 @@ const movementsDescriptions = movements.map(
 
 console.log(movementsDescriptions);
 */
+/*
+// LESSON: FILTER METHOD
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+
+const withdrawalsFilter = movements.filter(mov => mov < 0);
+
+console.log(withdrawalsFilter);
+console.log(movements);
+console.log(deposits);
+
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+console.log(depositsFor);
+
+const withdrawals = [];
+for (const mov of movements) if (mov < 0) withdrawals.push(mov);
+console.log(withdrawals);
+// END OF LESSON: FILTER METHOD
+*/
+/*
+// LESSON: REDUCE METHOD
+
+
+// accumulator -> SNOWBALL
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+
+//Arrow function for balance
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// Maximum value
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(max);
+
+const min = movements.reduce((acc, mov) => {
+  if (acc < mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(min);
+*/
+
+// End of L: REDUCE ARRAYS
+
+/////////////// CODING CHALLENGE #2  //////////
+/*
+BEFORE HELP-SUCCESSFUL
+*/
+//function that accepts arrays of dog's ages(par(ages)) and returns...
+// const calcAverageHumanAge = function (ages) {
+//   // 1. map() method
+//   const humanAges = ages.map(function (dogsAge) {
+//     if (dogsAge <= 2) {
+//       return dogsAge * 2;
+//     } else if (dogsAge > 2) {
+//       return 16 + dogsAge * 4;
+//     }
+//   });
+
+//   // 2. filter() method
+//   const filterAges = humanAges.filter(ages => ages >= 18);
+//   console.log(filterAges);
+//   // 3. reduce() method
+//   const avgHumanAge = filterAges.reduce(function (acc, ages) {
+//     return acc + ages / filterAges.length;
+//   }, 0);
+//   console.log(avgHumanAge);
+// };
+
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+/*
+VIDEO SOLUTION
+*/
+
+// const calcAverageHumanAge = function (ages) {
+//   const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+
+//   const adults = humanAges.filter(age => age >= 18);
+//   console.log(humanAges);
+//   console.log(adults);
+
+//   const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+//   console.log(average);
+// };
+
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
