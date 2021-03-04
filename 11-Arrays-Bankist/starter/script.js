@@ -60,7 +60,7 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
-/*
+
 // LESSON: CREATING DOM ELEMENTS
 
 const displayMovements = function (movements) {
@@ -77,7 +77,7 @@ const displayMovements = function (movements) {
       i + 1
     }${type}</div>
  
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov}€</div>
       </div>
     `;
     //Appended to the other child elements
@@ -86,12 +86,73 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
-// console.log(containerMovements.innerHTML);
-*/
+//creates and displays balance
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, curr) => acc + curr, 0);
+  labelBalance.textContent = `${balance}€`;
+};
+calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  // Math.abs() gives only positive values
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    // filters(excludes) out < 1 values
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${Math.abs(interest)}€`;
+};
+calcDisplaySummary(account1.movements);
+
+// LESSON: COMPUTING NAMES
+//creates a new object property inside accounts
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+//toLowerCase, split, map, and join method to get initials
+// const username = user
+//   .toLowerCase()
+//   .split(' ')
+//   .map(function (name) {
+//     return name[0];
+//   })
+//   .join('');
+
+//arrow method to return initials
+// const username = user
+//   .toLowerCase()
+//   .split(' ')
+//   .map(name => name[0])
+//   .join('');
+// console.log(username);
+
+//END OF LESSON: COMPUTING NAMES
+/*
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
+*/
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
@@ -281,4 +342,121 @@ const movementsDescriptions = movements.map(
 );
 
 console.log(movementsDescriptions);
+*/
+/*
+// LESSON: FILTER METHOD
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+
+const withdrawalsFilter = movements.filter(mov => mov < 0);
+
+console.log(withdrawalsFilter);
+console.log(movements);
+console.log(deposits);
+
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+console.log(depositsFor);
+
+const withdrawals = [];
+for (const mov of movements) if (mov < 0) withdrawals.push(mov);
+console.log(withdrawals);
+// END OF LESSON: FILTER METHOD
+*/
+/*
+// LESSON: REDUCE METHOD
+
+
+// accumulator -> SNOWBALL
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+
+//Arrow function for balance
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// Maximum value
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(max);
+
+const min = movements.reduce((acc, mov) => {
+  if (acc < mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(min);
+*/
+
+// End of L: REDUCE ARRAYS
+
+/////////////// CODING CHALLENGE #2  //////////
+/*
+BEFORE HELP-SUCCESSFUL
+*/
+//function that accepts arrays of dog's ages(par(ages)) and returns...
+// const calcAverageHumanAge = function (ages) {
+//   // 1. map() method
+//   const humanAges = ages.map(function (dogsAge) {
+//     if (dogsAge <= 2) {
+//       return dogsAge * 2;
+//     } else if (dogsAge > 2) {
+//       return 16 + dogsAge * 4;
+//     }
+//   });
+
+//   // 2. filter() method
+//   const filterAges = humanAges.filter(ages => ages >= 18);
+//   console.log(filterAges);
+//   // 3. reduce() method
+//   const avgHumanAge = filterAges.reduce(function (acc, ages) {
+//     return acc + ages / filterAges.length;
+//   }, 0);
+//   console.log(avgHumanAge);
+// };
+
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+/*
+VIDEO SOLUTION
+*/
+
+// const calcAverageHumanAge = function (ages) {
+//   const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+
+//   const adults = humanAges.filter(age => age >= 18);
+//   console.log(humanAges);
+//   console.log(adults);
+
+//   const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+//   console.log(average);
+// };
+
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+
+/*
+// LESSON: THE MAGIC OF CHAINING METHODS
+const eurToUsd = 1.1;
+console.log(movements);
+
+// PIPELINE
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    // .map(mov => mov * eurToUsd)
+    return mov * eurToUsd;
+  })
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
 */
