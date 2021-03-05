@@ -110,7 +110,6 @@ const calcDisplaySummary = function (movements) {
     .map(deposit => (deposit * 1.2) / 100)
     // filters(excludes) out < 1 values
     .filter((int, i, arr) => {
-      console.log(arr);
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
@@ -459,4 +458,44 @@ const totalDepositsUSD = movements
   })
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
+*/
+/*
+///////////CODING CHALLENGE #3 //////////
+// Before help-miscalculated the .reduce(avg)
+const calcAverageHumanAge = ages =>
+  ages
+    .map((age, i, arr) => {
+      return age <= 2 ? 2 * age : 16 + age * 4;
+    })
+    .filter(age => age >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+
+// const calcAverageHumanAge = ages =>
+//   ages
+//     .map((age, i, arr) => (age <= 2 ? age * 2 : 16 + age * 4))
+//     .filter(age => age >= 18)
+//     // arr param is the only way to calc avg
+//     .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+console.log(avg1);
+console.log(avg2);
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁CODING CHALLENGE #3- COMPLETE 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+*/
+/*
+// LESSON: FIND METHOD
+// Find method needs a callback that returns a boolean
+//first element in arr will be returned that satisfies it
+const firstWithdrawal = movements.find(mov => mov < 0);
+
+console.log(movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
 */
