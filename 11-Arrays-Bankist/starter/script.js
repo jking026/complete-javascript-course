@@ -85,37 +85,35 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
+
 //creates and displays balance
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, curr) => acc + curr, 0);
   labelBalance.textContent = `${balance}€`;
 };
-calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   // Math.abs() gives only positive values
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     // filters(excludes) out < 1 values
     .filter((int, i, arr) => {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${Math.abs(interest)}€`;
+  labelSumInterest.textContent = `${interest}€`;
 };
-calcDisplaySummary(account1.movements);
 
 // LESSON: COMPUTING NAMES
 //creates a new object property inside accounts
@@ -128,6 +126,37 @@ const createUsernames = function (accs) {
       .join('');
   });
 };
+createUsernames(accounts);
+
+// EVENT HANDLER
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  // Prevents form from submitting
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+  //optional chaining with ? before pin
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and welcome message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 100;
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+    // Display movements
+    displayMovements(currentAccount.movements);
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+    // Display summary
+    calcDisplaySummary(currentAccount);
+  }
+});
 
 //toLowerCase, split, map, and join method to get initials
 // const username = user
@@ -152,7 +181,7 @@ const createUsernames = function (accs) {
 /////////////////////////////////////////////////
 // LECTURES
 */
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 /*
