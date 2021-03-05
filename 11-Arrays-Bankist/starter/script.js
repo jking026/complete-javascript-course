@@ -162,6 +162,21 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  //Hint-if you hear any think of the .some() method
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = Number(inputTransferAmount.value);
@@ -578,3 +593,27 @@ console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 */
+/*
+// LESSON: SOME AND EVERY METHOD
+console.log(movements);
+
+// Only checks for EQUALITY
+console.log(movements.includes(-130));
+
+// SOME: CONDITIONS -any value = true
+
+console.log(movements.some(mov => mov === -130));
+const anyDeposits = movements.some(mov => mov > 1500);
+console.log(anyDeposits);
+
+// EVERY- if 'EVERY' element passes than the every method will be truthy
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+// Serperate callback
+// Saving a callback into a reusable variable
+const deposit = mov => mov < 0;
+console.log(movements.filter(deposit));
+*/
+
+// LESSON: FLAT AND FLATMAP
