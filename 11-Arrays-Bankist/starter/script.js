@@ -692,3 +692,38 @@ console.log(movements);
 movements.sort((a, b) => b - a);
 console.log(movements);
 */
+/*
+// LESSON: MORE WAYS OF CREATING AND FILLING ARRAYS
+const arr = [1, 2, 3, 4, 5, 6, 7];
+
+const x = new Array(7);
+console.log(x); // => [empty × 7]
+// console.log(x.map(() => 5)); //doens't work
+
+// mutates the entire arr
+// x.fill(1);
+arr.fill(23, 2, 4); // => [1, 2, 23, 23, 5, 6, 7]
+console.log(arr);
+
+// Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+// part of an assigntment
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+// eventListener to store movements into a New Array
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    //converts the string into a number and removes the symbols
+    el => Number(el.textContent.replace('€', ''))
+  );
+
+  console.log(movementsUI);
+  //still needs a .map()
+  const movementUI2 = [...document.querySelectorAll('.movements__value')];
+  console.log(movementUI2);
+});
+*/
