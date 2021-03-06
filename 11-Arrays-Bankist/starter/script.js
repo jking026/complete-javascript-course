@@ -615,5 +615,36 @@ console.log(account4.movements.every(mov => mov > 0));
 const deposit = mov => mov < 0;
 console.log(movements.filter(deposit));
 */
-
+/*
 // LESSON: FLAT AND FLATMAP
+
+// Concatonated the arr
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat()); // => [1, 2, 3, 4, 5, 6, 7, 8]
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat()); // => 3,4..,7,8
+console.log(arrDeep.flat(2)); // => [1, 2, 3, 4, 5, 6, 7, 8]
+
+// new concatenated arr from movements
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements);
+//concatenates each account at level 1
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+//adds all mov together
+const overalBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+console.log(overalBalance);
+//Better to chain them together with flat
+const overalBalanceChain = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overalBalanceChain);
+
+// flatMap() shorter and more efficient
+const overalBalanceFlatmap = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overalBalanceFlatmap);
+*/
