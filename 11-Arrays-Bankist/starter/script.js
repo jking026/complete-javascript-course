@@ -63,12 +63,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 // LESSON: CREATING DOM ELEMENTS
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   //similar to 'texcontent'
   containerMovements.innerHTML = '';
-  // .textConten = 0;
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -222,7 +223,15 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
   labelWelcome.textContent = 'Log in to get started';
 });
-
+// creates a starting status
+let sorted = false;
+// adds sort function to sort btn
+btnSort.addEventListener('click', function (a) {
+  a.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  // flips sorted as the btn is clicked
+  sorted = !sorted;
+});
 //toLowerCase, split, map, and join method to get initials
 // const username = user
 //   .toLowerCase()
@@ -647,4 +656,39 @@ const overalBalanceFlatmap = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overalBalanceFlatmap);
+*/
+
+/*
+// LESSON: SORTING ARRAYS
+
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+// .sort() mutates the original arr
+console.log(owners.sort());
+console.log(owners);
+
+// Numbers
+console.log(movements);
+
+//assign a callback function
+// return < 0, A, B (keep order)
+// return >0, B, A (swich order)
+
+// Ascending order
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+// console.log(movements); // => [-650, -400, -130, 70, 200, 450, 1300, 3000]
+//improved version//
+movements.sort((a, b) => a - b);
+console.log(movements);
+// Descending order
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 11;
+// });
+// console.log(movements); // => [3000, 1300, 450, 200, 70, -130, -400, -650]
+// improved "descending" version
+movements.sort((a, b) => b - a);
+console.log(movements);
 */
