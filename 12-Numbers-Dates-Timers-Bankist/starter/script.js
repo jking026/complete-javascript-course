@@ -327,3 +327,35 @@ console.log((2.7).toFixed(0)); // => string
 
 console.log(+(2.7).toFixed(0)); // converts to a number
 */
+/*
+// THE REMAINDER OPERATOR
+
+console.log(5 % 2); //  1
+console.log(5 / 2); // 5 = 2 * 2 + 1
+console.log(8 % 3); // 2
+
+console.log(6 % 2); // 0
+
+console.log(7 % 2); //1
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(8));
+console.log(isEven(23));
+console.log(isEven(564));
+
+const isOdd = n => n % 2 === 1;
+console.log(isOdd(23));
+console.log(isOdd(25));
+console.log(isOdd(24));
+
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    // 0 , 2, 4
+    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+    // 0, 3, 6
+    if (i % 3 === 0) row.style.backgroundColor = 'blue';
+  });
+});
+
+//  *HINT* Nth time use the % remainder property
+*/
