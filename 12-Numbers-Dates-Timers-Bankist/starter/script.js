@@ -359,3 +359,34 @@ labelBalance.addEventListener('click', function () {
 
 //  *HINT* Nth time use the % remainder property
 */
+/*
+// LESSON: WORKING WITH BIGINT
+
+//largest number JS can represent
+console.log(2 ** 53 - 1); // 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+console.log(2 ** 53 + 1);
+
+// ****HINT**** USE n and it stores as a bigInt
+console.log(46565189165515165321565485165n);
+console.log(BigInt(465651));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(546549841651981645n * 65165165165165165151n);
+
+const huge = 6516516512132165121321n;
+const num = 26;
+console.log(huge * BigInt(num));
+
+// Exceptions
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n); // bigint
+console.log(20n == '20');
+console.log(huge + ' is REALLY big!!!'); // 6516516512132165121321 is REALLY big!!!
+
+// Divisions
+console.log(11n / 3n); //3n
+console.log(10 / 3); //3.33333333;
+*/
