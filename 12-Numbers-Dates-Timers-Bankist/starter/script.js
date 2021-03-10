@@ -206,7 +206,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = +inputLoanAmount.value;
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -223,7 +223,7 @@ btnClose.addEventListener('click', function (e) {
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
@@ -251,3 +251,41 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+/*
+// LESSON: CONVERTING AND CHECKING NUMBERS 
+console.log(23 === 23.0);
+
+// Base 10 - 0 to 9
+// Binary base 2 - 0 1
+
+console.log(0.1 + 0.2); // 0.30000000000000004 ???????????🤷‍♂️
+console.log(0.1 + 0.2 === 0.3); // false ??????? whwha🤷‍♂️
+
+// Automatic type coercion conversion
+console.log(Number('23'));
+console.log(+'23');
+
+// Parsing(parse Integers) - disolves symbols but needs to start with a number
+console.log(Number.parseInt('30px', 10)); // 30
+console.log(Number.parseInt('e0px', 10)); //NaN
+//parseFloat()
+console.log(Number.parseInt('       2.5rem'));
+console.log(Number.parseFloat('2.5rem'));
+
+// console.log(parseFloat(' 2.5 rem    '));
+
+console.log(Number.isNaN(20));
+console.log(Number.isNaN('20'));
+console.log(Number.isNaN(+'20x'));
+console.log(Number.isNaN(23 / 0));
+
+// Better way to check for a real number
+console.log(Number.isFinite(20));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite(+'20x'));
+console.log(Number.isFinite(23 / 0)); // infinite is not finite
+
+console.log(Number.isInteger(23.0));
+console.log(Number.isInteger(23));
+*/
