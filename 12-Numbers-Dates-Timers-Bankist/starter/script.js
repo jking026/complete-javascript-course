@@ -390,3 +390,49 @@ console.log(huge + ' is REALLY big!!!'); // 6516516512132165121321 is REALLY big
 console.log(11n / 3n); //3n
 console.log(10 / 3); //3.33333333;
 */
+
+/*
+// LESSON: CREATING DATES 
+
+// Create a date
+const now = new Date();
+console.log(now);
+
+console.log(
+  new Date('Wed Mar 10 2021 18:54:50 GMT+0900 (Korean Standard Time)')
+);
+console.log(new Date('December 24, 2020'));
+console.log(new Date(account1.movementsDates[0]));
+
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // Thu Nov 19 2037 15:23:05 GMT+0900 (Korean Standard Time)
+
+// Auto corrects the date
+console.log(new Date(2037, 10, 31)); // Tue Dec 01 2037
+
+// Pass in the miliseconds
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); //Sun Jan 04 1970 09:00:00
+
+// Working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString()); //2037-11-19T06:23:00.000Z
+console.log(future.getTime()); //2142224580000
+
+// reverses the miliseconds to the date since
+console.log(new Date(2142224580000)); //Thu Nov 19 2037 15:23:00
+
+// timestamp
+console.log(Date.now());
+
+//mutates the date function
+future.setFullYear(2050);
+console.log(future);
+*/
