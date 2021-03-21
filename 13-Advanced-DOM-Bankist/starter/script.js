@@ -28,7 +28,9 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
-/*
+
+// LESSON: SELECTING, CREATING, AND DELETING ELEMENTS
+
 //shows the entire html document
 console.log(document.head);
 console.log(document.body);
@@ -70,4 +72,53 @@ document
 
     message.remove();
   });
-*/
+
+//LESSON: STYLES, ATTRIBUTES, AND CLASSES
+
+// Styles
+message.style.backgroundColor = '#3738d';
+message.style.width = '120%';
+
+console.log(message.style.height);
+console.log(message.style.backgroundColor);
+console.log(getComputedStyle(message).color); //rgb(187, 187, 187)
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+// Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = 'Beautifulist minimalist logo';
+
+// Non-Standard
+console.log(logo.designer);
+console.log(logo.getAttribute('designer'));
+logo.setAttribute('company', 'Bankist');
+
+console.log(logo.getAttribute('src'));
+console.log(logo.src);
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+// Data attributes
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c'); // not includes
+
+//Don't use, because it will override the classes
+logo.className = 'Jonas';
+
+// LESSON: IMPLEMENTING SMOOTING SCROLLING
