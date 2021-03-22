@@ -67,7 +67,7 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
 // Page navigation
 
@@ -94,6 +94,37 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     console.log(id);
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
+});
+///////////////////////////////////////////////////////////////
+
+// LESSON: BUILDING A TABBED COMPONENT
+
+// Tabbed component
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// Terrible and slows down the page
+// tabs.forEach(t => t.addEventListener('click', () => console.log('TAB')));
+//Event delegation === best practice
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  // Guard clause instead of a traditional if statement block
+  if (!clicked) return;
+
+  // Remove active classes
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  // Activate content area
+
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
 
 /*
