@@ -28,7 +28,7 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
-
+/*
 // LESSON: SELECTING, CREATING, AND DELETING ELEMENTS
 
 //shows the entire html document
@@ -120,5 +120,40 @@ logo.classList.contains('c'); // not includes
 
 //Don't use, because it will override the classes
 logo.className = 'Jonas';
-
+*/
 // LESSON: IMPLEMENTING SMOOTING SCROLLING
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+// relative viewport of location via pixels
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y)', window.pageXOffset, pageYOffset);
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // // Scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // use for old browsers
+  // allows the button to smoothly transition to the correct property
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+  //Modern JS only for modern browsers
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
