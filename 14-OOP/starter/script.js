@@ -112,15 +112,15 @@ mercedes.accelerate();
 */
 
 /////////////////////////////////CC#1 COMPLETE///////////////////
-/*
+/* */
 // LESSON: ES6 CLASSES
 // class expression
 // const PersonCl = class {};
 
 // class declaration
 class PersonCl {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
@@ -132,11 +132,25 @@ class PersonCl {
   greet() {
     console.log(`Hey ${this.firstName}`);
   }
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  // Set a property that already exists.
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
 }
 
-const jessica = new PersonCl('Jessica', 1996);
+const jessica = new PersonCl('Jessica Davis', 1996);
 console.log(jessica);
 jessica.calcAge();
+console.log(jessica.age);
 
 console.log(jessica.__proto__ === PersonCl.prototype);
 
@@ -151,6 +165,26 @@ jessica.greet();
 // 2. Classes are first-class citizens (pass them into functions and return them from functions)
 
 //3. Classes are executed in strict mode
-*/
 
-// LESSON: SITTERS AND GETTERS
+const walter = new PersonCl('Walter White', 1965);
+
+// LESSON: SETTERS AND GETTERS
+
+const account = {
+  owner: 'James',
+  movements: [300, 650, 560, 910],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+console.log(account.latest); // 910
+
+account.latest = 100;
+console.log(account.movements);
+
+// LESSON: STATIC METHODS
