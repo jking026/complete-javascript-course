@@ -4,7 +4,7 @@
 
 // const Person = function (firstName, birthYEar) {
 //   this.firstName = firstName;
-//   this.birthYEar = birthYEar;
+//   this.birthYear = birthYear;
 
 //   // NEVER CREATE A METHOD INSIDE A CONSTRUCTOR FUNCTION // REPETITIVE
 //   // this.calcAge = function () {
@@ -272,4 +272,143 @@ console.log(ford.__proto__);
 console.log(ford.speedUS);
 
 ///////////////////////////////// CC #2 COMPLETE //////////////////////
+*/
+/*
+// LESSON: INHERITANCE BETWEEN "CLASSES": CONSTRUTCTOR FUNCTIONS
+
+const Person = function (fullName, birthYear) {
+  this.fullName = fullName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  //.call can substitute another object for the current argument
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+  console.log();
+};
+
+// Linking Prototypes
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}.`);
+};
+
+const mike = new Student('Mike', 2020, 'Computer Science');
+console.log(mike);
+mike.introduce();
+mike.calcAge(); // 17
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+console.log(mike instanceof Student);
+console.log(mike instanceof Person);
+console.log(mike instanceof Student);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
+*/
+/*
+/////////////////// CODING CHALLENGE # 3 ///////////////////////////
+// OBJECT ORIENTED PROGRAMMING
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`'${this.make}' is going at ${this.speed} km/h`);
+};
+
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`'${this.make}' is going at ${this.speed} km/h`);
+};
+
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+};
+
+EV.prototype = Object.create(Car.prototype);
+
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge--;
+
+  console.log(
+    `${this.make} is going ${this.speed} km/h, with a charge of ${this.charge}%.`
+  );
+};
+// EV.prototype.constructor = EV;
+
+// console.log(EV.__proto__);
+
+const tesla = new EV('Tesla', 120, 23);
+
+tesla.chargeBattery(90);
+tesla.accelerate();
+tesla.accelerate();
+tesla.accelerate();
+tesla.accelerate();
+tesla.chargeBattery(78);
+tesla.brake();
+console.log(tesla);
+tesla.brake();
+///////////////////////////////// CC #3 COMPLETE //////////////////////
+*/
+/*
+CC #3 with if statement for 0% battery
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`'${this.make}' is going at ${this.speed} km/h`);
+};
+
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`'${this.make}' is going at ${this.speed} km/h`);
+};
+
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+};
+EV.prototype = Object.create(Car.prototype);
+
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
+
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge--;
+  if (this.charge === 0) {
+    console.log('Oh NO MORE BATTERY!');
+  } else {
+    console.log(
+      `${this.make} is going ${this.speed} km/h, with a charge of ${this.charge}%.`
+    );
+  }
+};
+
+EV.prototype.constructor = EV;
+const tesla = new EV('Tesla', 120, 23);
+tesla.chargeBattery(2);
+tesla.accelerate();
+tesla.accelerate();
 */
