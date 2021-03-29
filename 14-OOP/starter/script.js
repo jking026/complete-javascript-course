@@ -514,36 +514,66 @@ jay.calcAge();
 // 2 reasons to encapsulate our data
 // 1. Prevent code from outside of a class to accidently manipulate our data inside of our class.
 
+// LESSON: ENCAPSULATION: PRIVATE "CLASS FIELDS" AND METHODS
+// 4 types of class fields
+// Public fields (C++ & Java are called fields)
+// Private fields
+// Public methods
+// Private methods
+// There is also the static version
+
 class Account {
+  // How to declare a public field!(instances)
+
+  locale = navigator.language;
+
+  // 2. Private fields\
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this._pin = pin;
+
     // Protected property
-    this._movements = [];
+    this.#movements = [];
+    this.#pin = pin;
     this.locale = navigator.language;
 
     console.log(`Thanks for opening an account, ${owner}`);
   }
+
+  // 3. Public methods
   // Public interface (API)
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
 
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
+    return this;
   }
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
-  _approveLoan(val) {
-    return true;
-  }
+
   requestLoan(val) {
     if (this._approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan Approved`);
+      return this;
     }
+  }
+  static helper() {
+    console.log('Helper');
+  }
+
+  // 4. Private methods
+
+  // #approveLoan(val) {
+  _approveLoan(val) {
+    return true;
   }
 }
 const acc1 = new Account('James', 'USD', 1111);
@@ -551,15 +581,22 @@ console.log(acc1);
 
 // acc1.movements.push(250);
 // acc1.movements.push(-140);
-acc1._movements.push(250);
+
 acc1.deposit(250);
 acc1.withdraw(140);
 acc1.requestLoan(1000);
-acc1._approveLoan(1000);
+
 console.log(acc1.getMovements());
 console.log(acc1);
 
 console.log(acc1.pin);
-console.log(acc1._pin);
 
-// LESSON: ENCAPSULATION: PRIVATE CLASS FIELDS AND METHODS
+// console.log(acc.#movements);// Uncaught Syntax error
+// console.log(#pin);
+// console.log(acc1.#approveLoan(100));
+
+Account.helper();
+
+// LESSON: CHAINGING METHODS
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+console.log(acc1.getMovements());
