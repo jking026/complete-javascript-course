@@ -67,7 +67,6 @@ class Cycling extends Workout {
 // Experiments 1
 const run1 = new Running([39, -12], 5.2, 24, 178);
 const cycling1 = new Cycling([39, -12], 27, 95, 523);
-console.log(run1, cycling1);
 
 ////////////////////////////////////
 // APPLICATION ARCHITECTURE
@@ -86,7 +85,12 @@ class App {
   #mapEvent;
   #workouts = [];
   constructor() {
+    // Get user's position
     this._getPosition();
+
+    // Get data from local storage
+    this._getLocalStorage();
+
     // LESSON:"USING THE GEOLOCATION API"
     form.addEventListener('submit', this._newWorkout.bind(this));
     // LESSON: "RENDERING WORKOUT INPUT FORM"
@@ -107,9 +111,9 @@ class App {
   _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    console.log(
-      `https://www.google.com/maps/search/maps/@${latitude}, ${longitude}`
-    );
+    // console.log(
+    //   `https://www.google.com/maps/search/maps/@${latitude}, ${longitude}`
+    // );
 
     const coords = [latitude, longitude];
     // first param = latitude, longitude/ second param = zoom level
@@ -123,6 +127,10 @@ class App {
 
     // Handling clicks on map
     this.#map.on('click', this._showForm.bind(this));
+
+    this.#workouts.forEach(work => {
+      this._renderWorkoutMarker(work);
+    });
   }
 
   _showForm(mapE) {
@@ -199,6 +207,9 @@ class App {
 
     // Hide form + clear input fields
     this._hideForm();
+
+    // Set local storage to all workouts
+    this._setLocalStorage();
   }
 
   _renderWorkoutMarker(workout) {
@@ -271,14 +282,12 @@ class App {
   }
   _moveToPopup(e) {
     const workoutEl = e.target.closest('.workout');
-    console.log(workoutEl);
 
     if (!workoutEl) return;
 
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
-    console.log(workout);
 
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
@@ -288,7 +297,29 @@ class App {
     });
 
     // using the public interface
-    workout.clicks++;
+    // workout.clicks++;
+  }
+
+  // Only use browser datastorage for small amounts of data
+  _setLocalStorage() {
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+  }
+
+  _getLocalStorage() {
+    const data = JSON.parse(localStorage.getItem('workouts'));
+
+    if (!data) return;
+
+    this.#workouts = data;
+
+    this.#workouts.forEach(work => {
+      this._renderWorkout(work);
+    });
+  }
+  // Later add a button with an eventlistener
+  reset() {
+    localStorage.removeItem('workouts');
+    location.reload();
   }
 }
 
