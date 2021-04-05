@@ -7,21 +7,9 @@ const countriesContainer = document.querySelector('.countries');
 
 // LESSON: FIRST AJAX CALL: XMLHttpRequest
 
-const getCountryData = function (country) {
-  // older version
-  const request = new XMLHttpRequest();
-  request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`);
-  request.send();
-  console.log(request.responseText);
-
-  request.addEventListener('load', function () {
-    console.log(this.responseText);
-
-    const [data] = JSON.parse(this.responseText);
-    console.log(data);
-
-    const html = `
-      <article class="country">
+const renderCountry = function (data, className = '') {
+  const html = `
+      <article class="country ${className}">
           <img class="country__img" src="${data.flag}" />
           <div class="country__data">
             <h3 class="country__name">${data.name}</h3>
@@ -36,10 +24,54 @@ const getCountryData = function (country) {
           </div>
         </article>
   `;
-    countriesContainer.insertAdjacentHTML('beforeend', html);
-    countriesContainer.style.opacity = 1;
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.style.opacity = 1;
+};
+//AJAX call country 1
+const getCountryAndNeighbor = function (country) {
+  // older version
+  const request = new XMLHttpRequest();
+  request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`);
+  request.send();
+  console.log(request.responseText);
+
+  request.addEventListener('load', function () {
+    const [data] = JSON.parse(this.responseText);
+    console.log(data);
+
+    // Render country 1
+    renderCountry(data);
+
+    // Get neighbor country
+    const [neighbor] = data.borders;
+
+    if (!neighbor) return;
+
+    //AJAX call country 2
+    const request2 = new XMLHttpRequest();
+    request2.open('GET', `https://restcountries.eu/rest/v2/alpha/${neighbor}`);
+    request2.send();
+
+    request2.addEventListener('load', function () {
+      const data2 = JSON.parse(this.responseText);
+      console.log(data2);
+
+      renderCountry(data2, 'neighbor');
+    });
   });
 };
-getCountryData('USA');
-getCountryData('Canada');
-getCountryData('portugal');
+getCountryAndNeighbor('USA');
+
+// CALLBACK HELL === BUGS, TRIANGULAR SHAPE, HARD TO UNDERSTAND
+setTimeout(() => {
+  console.log('1 second has passed');
+  setTimeout(() => {
+    console.log('2 seconds has passed');
+    setTimeout(() => {
+      console.log('3 seconds has passed');
+      setTimeout(() => {
+        console.log('4 seconds has passed');
+      }, 1000);
+    }, 1000);
+  }, 1000);
+}, 1000);
