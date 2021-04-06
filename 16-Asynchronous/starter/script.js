@@ -25,7 +25,12 @@ const renderCountry = function (data, className = '') {
         </article>
   `;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
+  // countriesContainer.style.opacity = 1;
+};
+// LESSON: HANDLING REJECTED PROMISES
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  // countriesContainer.style.opacity = 1;
 };
 
 /*
@@ -117,7 +122,22 @@ const getCOuntryData = function (country) {
       return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbor}`);
     })
     .then(response => response.json())
-    .then(data => renderCountry(data, 'neighbor'));
+    .then(data => renderCountry(data, 'neighbor'))
+    .catch(err => {
+      console.error(`${err}💥💥💥💥`);
+      renderError(`Something went wrong 💣💣 ${err.message}. Try again!`);
+    })
+
+    //used for hiding a loading spinner
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
 };
-getCOuntryData('USA');
+btn.addEventListener('click', function () {
+  getCOuntryData('portugal');
+});
+
+// getCOuntryData('USA');
 // getCOuntryData('mexico');
+
+// getCOuntryData('dakfljdlfkaj');
