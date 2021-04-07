@@ -25,7 +25,7 @@ const renderCountry = function (data, className = '') {
         </article>
   `;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 // LESSON: HANDLING REJECTED PROMISES
 const renderError = function (msg) {
@@ -106,8 +106,8 @@ setTimeout(() => {
 //       console.log(data);
 //       renderCountry(data[0]);
 //     });
-// };
-
+// };-
+/*
 const getJSON = function (url, errorMsg = 'Something went wrong') {
   return fetch(url).then(response => {
     if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
@@ -115,7 +115,7 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
     return response.json();
   });
 };
-
+*/
 // // LESSON: CHAINING PROMISES
 // const getCOuntryData = function (country) {
 //   // Country 1
@@ -153,7 +153,7 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 //       countriesContainer.style.opacity = 1;
 //     });
 // };
-
+/*
 // LESSON: CHAINING PROMISES
 const getCOuntryData = function (country) {
   // Country 1
@@ -195,3 +195,32 @@ btn.addEventListener('click', function () {
 // getCOuntryData('mexico');
 
 // getCOuntryData('Australia'); // No neighbors error
+*/
+
+/////////////////////////////CODING CHALLENGE #1///////////////////////
+//USING MULTIPLE API'S TO FIND THE LOCATION USING LATITUDE AND LONGITUDE
+// PART 1
+// 1. Create a function 'whereAmI' which takes as inputs a latitude value ('lat') and a longitude value ('lng') (these are GPS coordinates, examples are in test data below).
+
+const whereAmI = function (lat, lng) {
+  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+    .then(res => {
+      if (!res.ok) throw new Error(`ERROR ${res.status}, please slow down!`);
+      return res.json();
+    })
+    .then(data => {
+      console.log(`You are in ${data.city}, ${data.country}!`);
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+      return res.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.error(`Something went wrong  ${err.message}`));
+};
+// whereAmI(52.508, 13.381);
+// whereAmI(19.037, 72.873);
+// whereAmI(-33.933, 18.474);
+
+////////////////////////// CODING CHALLENGE #1 COMPLETE///////////////
