@@ -237,3 +237,62 @@ Promise.resolve('Resolved promise 2').then(res => {
 
 console.log('Test end ');
 */
+
+/*
+///////////////////////////USE FOR CC #2//////////////////////////
+// LESSON: BUILDING A SIMPLE PROMISE
+
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lottery draw is happening 🔮');
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('YOU WIN 🤑');
+    } else {
+      reject(new Error('YOU LOST YOUR MONEY 😖'));
+    }
+  }, 2000);
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+// to promisify setTimrout
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(1)
+  .then(() => {
+    console.log('I waited for 1 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 2 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 3 seconds');
+    return wait(1);
+  })
+  .then(() => console.log('I waited for 4 second'));
+
+// setTimeout(() => {
+//   console.log('1 second has passed');
+//   setTimeout(() => {
+//     console.log('2 seconds has passed');
+//     setTimeout(() => {
+//       console.log('3 seconds has passed');
+//       setTimeout(() => {
+//         console.log('4 seconds has passed');
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 1000);
+
+// created an immediate fulfilled promise
+
+Promise.resolve('abc').then(x => console.log(x));
+Promise.reject(new Error('Problem 🙀')).catch(x => console.error(x));
+*/
