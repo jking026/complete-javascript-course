@@ -296,3 +296,51 @@ wait(1)
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem 🙀')).catch(x => console.error(x));
 */
+/*
+// LESSON: PROMISIFYING THE GEOLOCATION API
+
+const getCurrentPosition = function () {
+  return new Promise(function (resolve, reject) {
+    //* automatically will call resolve and reject, so it can be simplified
+    //   navigator.geolocation.getCurrentPosition(
+    //     position => resolve(position),
+    //     err => reject(err)
+    //   );
+
+    //simple version
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+getCurrentPosition().then(pos => console.log(pos));
+
+const whereAmI = function () {
+  getCurrentPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      console.log(pos.coords);
+
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`ERROR ${res.status}, please slow down!`);
+      return res.json();
+    })
+    .then(data => {
+      console.log(data.country);
+
+      console.log(`You are in ${data.city}, ${data.country}!`);
+      console.log(data);
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+      return res.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.error(`Something went wrong  ${err.message}`));
+};
+
+btn.addEventListener('click', whereAmI);
+*/
+
+///////////////////////////// CC#3 ////////////////////////////////////
