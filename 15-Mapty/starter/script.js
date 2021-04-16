@@ -81,7 +81,7 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 class App {
   #map;
-  #mapZoomLevel = 13;
+  #mapZoomLevel = 15;
   #mapEvent;
   #workouts = [];
   constructor() {
@@ -131,6 +131,11 @@ class App {
     this.#workouts.forEach(work => {
       this._renderWorkoutMarker(work);
     });
+
+    // Add custom lines
+    // this.#map.on('dragend', function (ev) {
+    //   alert(ev.latlng); // ev is an event object (MouseEvent in this case)
+    // });
   }
 
   _showForm(mapE) {
