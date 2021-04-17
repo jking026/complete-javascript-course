@@ -399,7 +399,7 @@ createImage('img/img-1.jpg')
   .catch(err => console.error(err));
 */
 ////////////////////////////// CC #2 COMPLETE ///////////////////////
-
+/*
 // LESSON: CONSUMING PROMISES WITH ASYNC/AWAIT
 
 const getPosition = function () {
@@ -431,7 +431,6 @@ const whereAmI = async function () {
     if (!resGeo.ok) throw new Error('Problem getting location data');
 
     const dataGeo = await resGeo.json();
-    console.log(dataGeo);
 
     //Country data
     const res = await fetch(
@@ -442,15 +441,41 @@ const whereAmI = async function () {
     const data = await res.json();
 
     renderCountry(data);
+
+    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
   } catch (err) {
-    console.error(err);
+    console.error(`${err} 💩`);
     renderError(`💩 ${err.message}`);
+
+    // Reject promise returned from async function
+    throw err;
   }
 };
-whereAmI();
+
+console.log('1: Will get location');
+// const city = whereAmI();
+// console.log(city);
 
 console.log('First');
 
+// // Older way to return data using async
+// whereAmI()
+//   .then(city => console.log(`2: ${city}`))
+//   .catch(err => console.error(`2: ${err.message} 💩`))
+//   .finally(() => console.log('3: Finished getting location'));
+
+// Better way when using async & await functions
+(async function () {
+  try {
+    const city = await whereAmI();
+    console.log(`2: ${city}`);
+  } catch (err) {
+    console.error(`2: ${err.message} 💩`);
+  }
+  console.log('3: Finished getting location');
+})();
+
+//example 1
 //try + catch
 // try {
 //   let y = 1;
@@ -459,3 +484,33 @@ console.log('First');
 // } catch (err) {
 //   alert(err.message);
 // }
+*/
+
+// RUNNING PROMISES IN PARALLEL (promise.all combinator)
+
+const get3countries = async function (c1, c2, c3) {
+  try {
+    // const [data1] = await getJSON(
+    //   `https://restcountries.eu/rest/v2/name/${c1}`
+    // );
+    // const [data2] = await getJSON(
+    //   `https://restcountries.eu/rest/v2/name/${c2}`
+    // );
+    // const [data3] = await getJSON(
+    //   `https://restcountries.eu/rest/v2/name/${c3}`
+    // );
+
+    // console.log([data1.capital, data2.capital, data3.capital]);
+
+    //Promise.all() short circuits if one fails
+    const data = await Promise.all([
+      getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
+      getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
+      getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+    ]);
+    console.log(data.map(d => d[0].capital));
+  } catch (err) {
+    console.error(err);
+  }
+};
+get3countries('portugal', 'usa', 'tanzania');
