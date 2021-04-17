@@ -485,7 +485,7 @@ console.log('First');
 //   alert(err.message);
 // }
 */
-
+/*
 // RUNNING PROMISES IN PARALLEL (promise.all combinator)
 
 const get3countries = async function (c1, c2, c3) {
@@ -514,3 +514,66 @@ const get3countries = async function (c1, c2, c3) {
   }
 };
 get3countries('portugal', 'usa', 'tanzania');
+
+*/
+
+// Promise.race recieves and [] of promises and returns a promise
+
+// (async function () {
+//   const res = await Promise.race([
+//     getJSON(`https://restcountries.eu/rest/v2/name/italy`),
+//     getJSON(`https://restcountries.eu/rest/v2/name/egypt`),
+//     getJSON(`https://restcountries.eu/rest/v2/name/mexico`),
+//   ]);
+//   console.log(res[0]);
+// })();
+
+// LESSON: OTHER PROMISE COMBINATORS: RACE, ALLSETTLED & ANY
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://restcountries.eu/rest/v2/name/italy`),
+    getJSON(`https://restcountries.eu/rest/v2/name/egypt`),
+    getJSON(`https://restcountries.eu/rest/v2/name/mexico`),
+  ]);
+  console.log(res[0]);
+})();
+
+const timeout = function (sec) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error('Request was too long!'));
+    }, sec * 1000);
+  });
+};
+
+Promise.race(
+  [getJSON(`https://restcountries.eu/rest/v2/name/mexico`)],
+  timeout(5)
+)
+  .then(res => console.log(res[0]))
+  .catch(err => console.error(err));
+
+// PROMISE.allSettled
+
+Promise.allSettled([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success'),
+]).then(res => console.log(res));
+
+Promise.all([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success'),
+])
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+
+// Promis.any [ES2021]
+Promise.any([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success'),
+])
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
