@@ -1,38 +1,40 @@
 'use strict';
-/*
+
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
-///////////////////////////////////////
-
-// LESSON: FIRST AJAX CALL: XMLHttpRequest
-
 const renderCountry = function (data, className = '') {
   const html = `
-      <article class="country ${className}">
-          <img class="country__img" src="${data.flag}" />
-          <div class="country__data">
-            <h3 class="country__name">${data.name}</h3>
-            <h4 class="country__region">${data.region}</h4>
-            <p class="country__row"><span>👫</span>${(
-              +data.population / 1000000
-            ).toFixed(1)}</p>
-            <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-            <p class="country__row"><span>💰</span>${
-              data.currencies[0].name
-            }</p>
-          </div>
-        </article>
+  <article class="country ${className}">
+    <img class="country__img" src="${data.flag}" />
+    <div class="country__data">
+      <h3 class="country__name">${data.name}</h3>
+      <h4 class="country__region">${data.region}</h4>
+      <p class="country__row"><span>👫</span>${(
+        +data.population / 1000000
+      ).toFixed(1)} people</p>
+      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+      <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+    </div>
+  </article>
   `;
   countriesContainer.insertAdjacentHTML('beforeend', html);
   countriesContainer.style.opacity = 1;
 };
-// LESSON: HANDLING REJECTED PROMISES
+
 const renderError = function (msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
-*/
+
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+
+    return response.json();
+  });
+};
+
 /*
 //AJAX call country 1
 const getCountryAndNeighbor = function (country) {
@@ -397,3 +399,63 @@ createImage('img/img-1.jpg')
   .catch(err => console.error(err));
 */
 ////////////////////////////// CC #2 COMPLETE ///////////////////////
+
+// LESSON: CONSUMING PROMISES WITH ASYNC/AWAIT
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    //* automatically will call resolve and reject, so it can be simplified
+    //   navigator.geolocation.getPosition(
+    //     position => resolve(position),
+    //     err => reject(err)
+    //   );
+
+    //simple version
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// await will stop the function until the promise is fulfilled
+// fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(res =>
+//   console.log(res)
+
+const whereAmI = async function () {
+  // LESSON: ERR HANDLING WITH TRY...CATCH METHOD
+  try {
+    //Geolocation
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
+
+    //Reverse geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!resGeo.ok) throw new Error('Problem getting location data');
+
+    const dataGeo = await resGeo.json();
+    console.log(dataGeo);
+
+    //Country data
+    const res = await fetch(
+      `https://restcountries.eu/rest/v2/alpha/${dataGeo.state}`
+    );
+    if (!res.ok) throw new Error('Problem getting country');
+
+    const data = await res.json();
+
+    renderCountry(data);
+  } catch (err) {
+    console.error(err);
+    renderError(`💩 ${err.message}`);
+  }
+};
+whereAmI();
+
+console.log('First');
+
+//try + catch
+// try {
+//   let y = 1;
+//   const x = 2;
+//   y = 3;
+// } catch (err) {
+//   alert(err.message);
+// }
