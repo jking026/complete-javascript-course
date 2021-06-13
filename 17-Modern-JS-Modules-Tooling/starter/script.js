@@ -65,5 +65,20 @@ console.log(ShoppingCart2);
 // Will not access shippingCost
 console.log(ShoppingCart2.shippingCost); // => undefined
 */
-
+/*
 // LESSON: COMMONJS MODULES
+
+
+// (Syntax error)
+// Export 
+export.addToCart = function (product, quantity) {
+  cart.push({ product, quantity });
+  console.log(
+    `${quantity} ${product} added to cart (shipping cost is ) ${shippingCost}`
+  );
+};
+
+//Import 
+const {addToCart} = require('./shoppingCart.js')
+
+*/
