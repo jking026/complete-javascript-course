@@ -1,4 +1,3 @@
-/*
 // Importing module
 // IMPORTS MUTATE ARRAYS & OBJECTS
 // All modules are in strict mode
@@ -25,7 +24,6 @@ import { register, cashInDrawer as cid } from './shoppingCart.js';
 
 cid(15, 50);
 console.log(register);
-*/
 
 /*
 import shoppingCart from './shoppingCart.js';
@@ -104,3 +102,5 @@ console.log(stateClone);
 state.user.loggedIn = false;
 
 console.log(stateDeepClone);
+
+// LESSON: BUNDLING WITH PARCEL AND NPM SCRIPTS
