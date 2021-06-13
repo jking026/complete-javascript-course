@@ -1,3 +1,4 @@
+/*
 // Importing module
 // IMPORTS MUTATE ARRAYS & OBJECTS
 // All modules are in strict mode
@@ -19,3 +20,50 @@ add('pizzas', 5);
 add('bread', 2);
 add();
 console.log(cart);
+
+import { register, cashInDrawer as cid } from './shoppingCart.js';
+
+cid(15, 50);
+console.log(register);
+*/
+
+/*
+import shoppingCart from './shoppingCart.js';
+
+// LESSON: MODULE PATTERN
+const ShoppingCart2 = (function () {
+  const cart = [];
+  const shippingCost = 10;
+  const totalPrice = 250;
+  const totalQuantity = 26;
+
+  const addToCart = function (product, quantity) {
+    cart.push({ product, quantity });
+    console.log(
+      `${quantity} ${product} added to cart (shipping cost is ) ${shippingCost}`
+    );
+  };
+
+  const orderStock = function (product, quantity) {
+    console.log(`${quantity} ${product} ordered from supplier`);
+  };
+
+  // (CLOSURES) Will encapsulate anything that ISN'T RETURNED
+  return {
+    addToCart,
+    cart,
+    totalPrice,
+    totalQuantity,
+  };
+})();
+
+ShoppingCart2.addToCart('bananas', 10);
+
+ShoppingCart2.addToCart('burritos', 30);
+//
+console.log(ShoppingCart2);
+// Will not access shippingCost
+console.log(ShoppingCart2.shippingCost); // => undefined
+*/
+
+// LESSON: COMMONJS MODULES
