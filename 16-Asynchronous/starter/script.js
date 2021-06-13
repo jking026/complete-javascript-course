@@ -527,7 +527,7 @@ get3countries('portugal', 'usa', 'tanzania');
 //   ]);
 //   console.log(res[0]);
 // })();
-
+/*
 // LESSON: OTHER PROMISE COMBINATORS: RACE, ALLSETTLED & ANY
 (async function () {
   const res = await Promise.race([
@@ -577,3 +577,126 @@ Promise.any([
 ])
   .then(res => console.log(res))
   .catch(err => console.error(err));
+*/
+
+////////////////////////// CODING CHALLENGE #3 //////////////////////
+
+// PART 1
+// 1. Write an async function 'loadNPause' that recreates Challenge #2, this time using async/await (only the part where the promise is consumed, reuse the  'createImage' function from before)
+
+// 2. Compare the two versions, think about the big differences, and see which one you like more
+
+// 3. Don't forget to test the error handler, and to set the network speed to “Fast 3G”
+// in the dev tools Network tab
+
+// wait function for transitions between photos
+const wait = async function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+//change opacity to 'none'
+const nextImg = function (img) {
+  img = img.style.display = 'none';
+};
+
+// const wait = function resolveAfterSeconds(sec) {
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve('It is done!');
+//     }, sec * 1000);
+//   });
+// };
+
+// ViewPort for images
+const imgContainer = document.querySelector('.images');
+
+const createImage = async function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement('img');
+    img.src = imgPath;
+
+    img.addEventListener('load', function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener('error', function () {
+      reject(new Error('Image not found'));
+    });
+  });
+};
+
+// First attempt and successful to pass a function for opacity = 'none'
+
+// Part 1
+// async function loadNPause() {
+//   console.log('🔃-Loading ...');
+//   try {
+//     let img1 = await createImage('img/img-1.jpg');
+//     console.log('Image 1 loaded');
+//     await wait(2);
+//     nextImg(img1);
+//     let img2 = await createImage('img/img-2.jpg');
+//     console.log('Image 2 loaded');
+//     await wait(2);
+//     nextImg(img2);
+//     let img3 = await createImage('img/img-3.jpg');
+//     console.log('Image 3 loaded');
+//     await wait(2);
+//     nextImg(img3);
+//   } catch {
+//     err => console.error(err);
+//   }
+// }
+// loadNPause();
+
+// First attempt without help
+// const loadAll = async function (imgArr) {
+//   await Promise.all(imgArr.map(imgs => createImage(imgs)));
+// };
+// loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
+
+// Video solution
+
+// const loadNPause = async function () {
+//   try {
+//     //Load image 1
+//     let img = await createImage('img/img-1.jpg');
+//     console.log('Image 1 loaded');
+//     await wait(2);
+//     img.style.display = 'none';
+
+//     //Load image 2
+//     img = await createImage('img/img-2.jpg');
+//     console.log('Image 2 loaded');
+//     await wait(2);
+//     img.style.display = 'none';
+
+//     //Load image 3
+//     img = await createImage('img/img-3.jpg');
+//     console.log('Image 3 loaded');
+//     await wait(2);
+//     img.style.display = 'none';
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+// loadNPause();
+
+// Part 2-(video solution)
+
+const loadAll = async function (imgArr) {
+  try {
+    const imgs = imgArr.map(async img => await createImage(img));
+    console.log(imgs);
+
+    const imgEl = await Promise.all(imgs);
+    console.log(imgEl);
+    imgEl.forEach(img => img.classList.add('parallel'));
+  } catch (err) {
+    console.error(err);
+  }
+};
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
