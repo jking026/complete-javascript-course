@@ -2,15 +2,23 @@
   "name": "starter",
   "version": "1.0.0",
   "description": "npm i to reinstall json dependencies",
-  "main": "clean.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "leaflet": "^1.7.1",
+    "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "parcel": "^2.0.0-beta.2"
-  }
+    "parcel": "^2.0.0-beta.2",
+    "resolve-url": "^0.2.1"
+  },
+  "devDependencies": {
+    "cssnano": "^5.0.6",
+    "postcss": "^8.3.5"
+  },
+  "keywords": []
 }

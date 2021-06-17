@@ -83,7 +83,10 @@ const {addToCart} = require('./shoppingCart.js')
 
 // LESSON: INTRODUCTION TO NPM
 
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+// NOTE: lodash library only(without using the entire path)
+// import cloneDeep from 'lodash-es';
+import cloneDeep from 'lodash';
 
 const state = {
   car: [
@@ -104,3 +107,8 @@ state.user.loggedIn = false;
 console.log(stateDeepClone);
 
 // LESSON: BUNDLING WITH PARCEL AND NPM SCRIPTS
+
+// PARCEL: keeps the state of the viewport
+if (module.hot) {
+  module.hot.accept();
+}
