@@ -20,10 +20,10 @@ add('bread', 2);
 add();
 console.log(cart);
 
-import { register, cashInDrawer as cid } from './shoppingCart.js';
+// import { register, cashInDrawer as cid } from './shoppingCart.js';
 
-cid(15, 50);
-console.log(register);
+// cid(15, 50);
+// console.log(register);
 
 /*
 import shoppingCart from './shoppingCart.js';
@@ -86,21 +86,19 @@ const {addToCart} = require('./shoppingCart.js')
 // import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
 // NOTE: lodash library only(without using the entire path)
 // import cloneDeep from 'lodash-es';
-import cloneDeep from 'lodash';
+import cloneDeep from 'lodash-es';
 
 const state = {
-  car: [
+  cart: [
     { product: 'bread', quantity: 10 },
-    {
-      product: 'candy',
-      quantity: 26,
-    },
+    { product: 'candy', quantity: 26 },
   ],
   user: { loggedIn: true },
 };
 
 const stateClone = Object.assign({}, state);
 const stateDeepClone = cloneDeep(state);
+
 console.log(stateClone);
 state.user.loggedIn = false;
 
@@ -112,3 +110,15 @@ console.log(stateDeepClone);
 if (module.hot) {
   module.hot.accept();
 }
+
+// LECTURE:  CONFIGURING BABEL AND POLYFILLING
+
+class Person {
+  greeting = 'Hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting}, ${this.name}`);
+  }
+}
+
+const james = new Person('James');
